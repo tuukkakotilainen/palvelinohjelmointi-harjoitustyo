@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Suoritukset</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Suoritukset</h1>
+		<table class="table table-stripped">
+			<tr>
+				<th>Päivämäärä</th>
+				<th>Kategoria</th>
+				<th>Kesto</th>
+				<th>Kuvaus</th>
+			</tr>
+			<tr th:each = "suoritus : ${suoritukset}">
+				<td th:text="${suoritus.paivamaara}"/>
+				<td th:text="${suoritus.kategoria.nimi}"/>
+				<td th:text="${suoritus.kesto}"/>
+				<td th:text="${suoritus.kuvaus}"/>
+			</tr>
+		</table>
+</body>
+</html>
