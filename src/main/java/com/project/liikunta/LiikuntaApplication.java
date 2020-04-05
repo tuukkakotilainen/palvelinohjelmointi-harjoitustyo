@@ -32,8 +32,8 @@ public class LiikuntaApplication {
 			katrepository.save(new Kategoria("Uinti"));
 			katrepository.save(new Kategoria("Pyöräily"));
 			
-			suorrepository.save(new Suoritus("1.4.2020", "25 min", "Purolan alueella 4 km.", katrepository.findBynimi("Juoksulenkki").get(0)));
-			suorrepository.save(new Suoritus("3.4.2020", "1 h", "Perus treeni", katrepository.findBynimi("Kuntosali").get(0)));
+			suorrepository.save(new Suoritus("1.4.2020", "25 min", "Purolan alueella 4 km.", katrepository.findByNimi("Juoksulenkki").get(0)));
+			suorrepository.save(new Suoritus("3.4.2020", "1 h", "Perus treeni", katrepository.findByNimi("Kuntosali").get(0)));
 			
 			log.info("nouda kaikki suoritukset");
 			for (Suoritus suoritus : suorrepository.findAll()) {

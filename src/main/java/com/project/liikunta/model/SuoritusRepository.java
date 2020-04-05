@@ -9,6 +9,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface SuoritusRepository extends CrudRepository<Suoritus, Long> {
 	
-	List<Suoritus> findBypaivamaara(@Param("paivamaara")String paivamaara);
+	List<Suoritus> findByPaivamaara(@Param("paivamaara")String paivamaara);
 
 }
