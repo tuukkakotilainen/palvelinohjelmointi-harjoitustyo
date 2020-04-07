@@ -8,11 +8,12 @@
 	<h1>Uusi suoritus</h1>
 	<div>
 		<form th:object="${suoritus}" th:action="@{save}" action="#" method="post">
+			
 			<label for="paivamaara">Päivämäärä</label>
 			<input type="text" id="paivamaara" th:field="*{paivamaara}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
 			
-			<label for="kategoriat">Kategoriat</label>
+			<label for="kategoriat">Kategoria</label>
 			<select id="kategoriat" th:field="*{kategoria}" class="form-control">
 				<option th:each="kategoria: ${kategoriat}" th:value="${kategoria.kategoriaid}" th:text="${kategoria.nimi}"></option>
 			</select>
@@ -26,7 +27,7 @@
 			<input type="text" id="kuvaus" th:field="*{kuvaus}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
 			
-			<input type="submit" value="Save"></input>
+			<input type="submit" value="Tallenna"></input>
 			
 		</form>
 	</div>
