@@ -10,7 +10,7 @@
 	<h2 th:inline="text">Hei [[${#httpServletRequest.remoteUser}]]!</h2>
 	<div class="col-md-4" style="padding:20px 0">
 		<form th:action="@{/logout}" method="post">
-			<input type="submit" value="Kirjaudu ulos" class="btn btn-sm btn-danger"/>
+			<input type="submit" value="Kirjaudu ulos" class="btn btn-primary"/>
 		</form>
 	</div>
 		<table class="table table-stripped">
@@ -25,10 +25,10 @@
 				<td th:text="${suoritus.kategoria.nimi}"/>
 				<td th:text="${suoritus.kesto}"/>
 				<td th:text="${suoritus.kuvaus}"/>
-				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${suoritus.id})}" class="btn btn-danger">Poista</a></td>
-				<td><a th:href="@{/muokkaa/{id}(id=${suoritus.id})}" class="btn btn-warning">Muokkaa</a></td> 
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${suoritus.id})}" class="btn btn-outline-danger">Poista</a></td>
+				<td><a th:href="@{/muokkaa/{id}(id=${suoritus.id})}" class="btn btn-primary">Muokkaa</a></td> 
 			</tr>
 		</table>
-			<a href="/uusi" class="btn btn-success">Lisää uusi suoritus</a>
+			<a href="/uusi" class="btn btn-primary">Lisää uusi suoritus</a>
 </body>
 </html>

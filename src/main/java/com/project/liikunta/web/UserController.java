@@ -26,18 +26,12 @@ public class UserController {
         return "signup";
     }	
     
-    /**
-     * Create new user
-     * Check if user already exists & form validation
-     * 
-     * @param signupForm
-     * @param bindingResult
-     * @return
-     */
+    // Luodaan uusi käyttäjä ja tarkistetaan, että käyttäjätunnus ei ole vielä käytössä
+    
     @RequestMapping(value = "saveuser", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult) {
-    	if (!bindingResult.hasErrors()) { // validation errors
-    		if (signupForm.getPassword().equals(signupForm.getPasswordCheck())) { // check password match		
+    	if (!bindingResult.hasErrors()) { // validoidaan errorit
+    		if (signupForm.getPassword().equals(signupForm.getPasswordCheck())) { // Tarkistetaan että käyttäjä syötti saman salasanan kahteenkertaan.		
 	    		String pwd = signupForm.getPassword();
 		    	BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
 		    	String hashPwd = bc.encode(pwd);
@@ -46,16 +40,16 @@ public class UserController {
 		    	newUser.setPasswordHash(hashPwd);
 		    	newUser.setUsername(signupForm.getUsername());
 		    	newUser.setRole("USER");
-		    	if (repository.findByUsername(signupForm.getUsername()) == null) { // Check if user exists
+		    	if (repository.findByUsername(signupForm.getUsername()) == null) { // Tarkastetaan onko käyttäjätunnus jo käytössä.
 		    		repository.save(newUser);
 		    	}
 		    	else {
-	    			bindingResult.rejectValue("username", "err.username", "Username already exists");    	
+	    			bindingResult.rejectValue("username", "err.username", "Käyttäjätunnus on jo käytössä");    	
 	    			return "signup";		    		
 		    	}
     		}
     		else {
-    			bindingResult.rejectValue("passwordCheck", "err.passCheck", "Passwords does not match");    	
+    			bindingResult.rejectValue("passwordCheck", "err.passCheck", "Salasanat eivät täsmää");    	
     			return "signup";
     		}
     	}

@@ -26,6 +26,7 @@ public class LiikuntaApplication {
 	@Bean
 	public CommandLineRunner suoritusDemo(SuoritusRepository suorrepository, KategoriaRepository katrepository, UserRepository urepository) {
 		return (args) -> {
+			//Tehdään kategoriat
 			log.info("tallennetaan muutama kategoria ja suoritus");
 			katrepository.save(new Kategoria("Juoksulenkki"));
 			katrepository.save(new Kategoria("Kävelylenkki"));
@@ -34,9 +35,11 @@ public class LiikuntaApplication {
 			katrepository.save(new Kategoria("Uinti"));
 			katrepository.save(new Kategoria("Pyöräily"));
 			
+			//Tehdään kaksi esimerkki suoritusta
 			suorrepository.save(new Suoritus("1.4.2020", "25 min", "Purolan alueella 4 km.", katrepository.findByNimi("Juoksulenkki").get(0)));
 			suorrepository.save(new Suoritus("3.4.2020", "1 h", "Perus treeni", katrepository.findByNimi("Kuntosali").get(0)));
 			
+			//Tehdään kaksi käyttäjää, joista toinen on admin
 			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
 			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
 			urepository.save(user1);

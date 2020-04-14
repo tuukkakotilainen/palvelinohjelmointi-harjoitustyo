@@ -12,7 +12,7 @@ public class User {
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
-    // Username with unique constraint
+    // Käyttäjätunnuksen tulee olla uniikki.
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 

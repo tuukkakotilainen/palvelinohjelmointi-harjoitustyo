@@ -20,6 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+        //css, signup ja saveuser endpointit eivät vaadi kirjautumista.
         .authorizeRequests().antMatchers("/css/**").permitAll()
         .and()
         .authorizeRequests().antMatchers("/signup", "/saveuser").permitAll()
@@ -28,6 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
       .formLogin()
           .loginPage("/login")
+          //Kirjautumisen jälkeen käyttäjä ohjataan suoritukset -sivulle.
           .defaultSuccessUrl("/suoritukset")
           .permitAll()
           .and()

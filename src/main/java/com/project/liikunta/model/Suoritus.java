@@ -35,10 +35,16 @@ public class Suoritus {
 			this.kategoria = kategoria;
 		}
 		
-		//Autogeneroidaan Getterit ja setterit kaikille muille paitsi id:lle.
-		//id:lle tehdään vain getteri.
+		
+		
+		//Autogeneroidaan Getterit ja setterit.
+		
 		public Long getId() {
 			return id;
+		}
+		
+		public void setId(Long id) {
+			this.id = id;
 		}
 
 		public String getPaivamaara() {

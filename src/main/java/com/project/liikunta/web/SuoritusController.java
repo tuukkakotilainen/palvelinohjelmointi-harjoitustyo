@@ -36,7 +36,7 @@ public class SuoritusController {
 	@RequestMapping(value = "/uusi")
 	public String uusiSuoritus(Model model) {
 		model.addAttribute("suoritus", new Suoritus());
-		model.addAttribute("categories", katrepository.findAll());
+		model.addAttribute("kategoriat", katrepository.findAll());
 		return "uusi";
 	}
 	
@@ -44,7 +44,9 @@ public class SuoritusController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(Suoritus suoritus) {
 		suorrepository.save(suoritus);
+		System.out.println(suoritus);
 		return "redirect:suoritukset";
+		
 	}
 	
 	//Endpointilla /delete/{id} voi poistaa suorituksen, jos käyttäjällä on admin oikeudet.
@@ -76,6 +78,7 @@ public class SuoritusController {
         return (List<Suoritus>) suorrepository.findAll();
     }
 	
+	//Rest service, jolla voi hakea suorituksen id:n perusteella.
 	@RequestMapping(value="/suoritus/{id}", method = RequestMethod.GET)
     public @ResponseBody Optional<Suoritus> findSuoritusRest(@PathVariable("id") Long suoritusId) {	
     	return suorrepository.findById(suoritusId);
