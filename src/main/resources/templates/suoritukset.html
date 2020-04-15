@@ -7,8 +7,10 @@
 </head>
 <body>
 	<h1>Suoritukset</h1>
-	<h2 th:inline="text">Hei [[${#httpServletRequest.remoteUser}]]!</h2>
+	<!-- Viesti käyttäjälle -->
+	<h3 th:inline="text">Hei [[${#httpServletRequest.remoteUser}]]!</h3>
 	<div class="col-md-4" style="padding:20px 0">
+	<!-- Uloskirjautumispainike -->
 		<form th:action="@{/logout}" method="post">
 			<input type="submit" value="Kirjaudu ulos" class="btn btn-primary"/>
 		</form>
@@ -25,10 +27,13 @@
 				<td th:text="${suoritus.kategoria.nimi}"/>
 				<td th:text="${suoritus.kesto}"/>
 				<td th:text="${suoritus.kuvaus}"/>
+				<!-- Vain admin näkee/pystyy käyttämään poista, muokkaa ja lisää -painikkeita. -->
 				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${suoritus.id})}" class="btn btn-outline-danger">Poista</a></td>
-				<td><a th:href="@{/muokkaa/{id}(id=${suoritus.id})}" class="btn btn-primary">Muokkaa</a></td> 
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/muokkaa/{id}(id=${suoritus.id})}" class="btn btn-primary">Muokkaa</a></td> 
 			</tr>
 		</table>
-			<a href="/uusi" class="btn btn-primary">Lisää uusi suoritus</a>
+			<form sec:authorize="hasAuthority('ADMIN')">
+				<a href="/uusi" class="btn btn-primary">Lisää uusi suoritus</a>
+			</form>
 </body>
 </html>

@@ -32,8 +32,9 @@ public class SuoritusController {
 		return "suoritukset";
 	}
 	
-	//Endpointista /uusi voi luoda uuden suorituksen.
+	//Admin pystyy luomaan uuden suorituksen endpointissa /uusi.
 	@RequestMapping(value = "/uusi")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String uusiSuoritus(Model model) {
 		model.addAttribute("suoritus", new Suoritus());
 		model.addAttribute("kategoriat", katrepository.findAll());
@@ -57,8 +58,9 @@ public class SuoritusController {
 		return "redirect:../suoritukset";
 	}
 	
-	//Endpointilla /muokkaa/{id} voi muokata suoritusta.
+	//Admin pystyy muokkaamaan suoritusta ednpointissa /muokkaa/{id}.
 	@RequestMapping(value = "/muokkaa/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String muokkaaSuoritusta(@PathVariable("id") Long suoritusId, Model model) {
 		//Haetaan tietokannasta sql lauseella suoritus jolla on tämä id ja lisätään modeliin.
 		model.addAttribute("suoritus", suorrepository.findById(suoritusId));

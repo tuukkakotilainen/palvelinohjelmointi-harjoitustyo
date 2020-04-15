@@ -13,6 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.project.liikunta.model.Suoritus;
 import com.project.liikunta.model.SuoritusRepository;
 
+//Repositoryn testaus.
+
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class SuoritusRepositoryTest {

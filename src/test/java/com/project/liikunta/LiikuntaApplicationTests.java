@@ -9,8 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.project.liikunta.web.SuoritusController;
+import com.project.liikunta.web.UserController;
 
-
+//Controllereiden smoke -testaus.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -18,10 +19,15 @@ class LiikuntaApplicationTests {
 	
 	@Autowired
 	private SuoritusController suorcontroller;
+	
+	@Autowired
+	private UserController usercontroller;
 
 	@Test
 	void contextLoads() throws Exception {
 		assertThat(suorcontroller).isNotNull();
+		assertThat(usercontroller).isNotNull();
 	}
-
+	
+	
 }
